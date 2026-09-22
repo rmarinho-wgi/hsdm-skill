@@ -311,9 +311,9 @@
     <img class="logo" src="images/weidert-logo.png" alt="Weidert">
     <span class="eyebrow">Internal tool &middot; HubSpot CMS</span>
     <h1>HSDM<br>Assistant</h1>
-    <p class="sub">Front end for <code>hs-dev-manager</code>. Pull a client's HubSpot files, edit them locally, send changes back. No terminal commands or menus to learn first.</p>
+    <p class="sub">Front end for <code>hs-dev-manager</code>. Pull a client's HubSpot files, edit them locally, send changes back. No terminal commands or menus to learn first, and nothing here gets in the way if you already know them.</p>
     <div class="meta">
-      <span><b>Built for</b> anyone new to local HubSpot dev</span>
+      <span><b>Built for</b> developers and anyone comfortable with HTML/CSS</span>
       <span><b>Runs on</b> Claude Code</span>
       <span><b>Wraps</b> hs-dev-manager (hsdm)</span>
     </div>
@@ -331,7 +331,7 @@
   <section>
     <div class="kicker">Before you start</div>
     <h2 class="section-title">Five things need to be true first</h2>
-    <p class="lede">Say "check my HubSpot setup" and Claude verifies all of this for you. You don't need to run it yourself. Listed here so you know what "ready" looks like.</p>
+    <p class="lede">Say "check my HubSpot setup" and Claude verifies all of this for you. Say "set it up for me" and it installs whatever's missing too, one step at a time. Either way, you don't need to run these yourself. Listed here so you know what "ready" looks like.</p>
     <ul class="checklist">
       <li><span class="name">Node.js 22+</span><span class="why">24 LTS recommended if installing fresh</span></li>
       <li><span class="name">HubSpot CLI 8.x</span><span class="why">gives you the official <code>hs</code> commands + login</span></li>
@@ -429,8 +429,8 @@
     <div class="phrase-table-wrap">
       <table class="phrase-table">
         <tr><th>You say</th><th>Claude does</th></tr>
-        <tr><td class="you">"Set up my HubSpot workspace"</td><td>Checks prerequisites, installs hsdm if needed, runs <code>hsdm init</code></td></tr>
-        <tr><td class="you">"Is my HubSpot connection working?"</td><td>Runs the version and account checks, reports what's missing</td></tr>
+        <tr><td class="you">"Is my HubSpot setup ready?" / "check my HubSpot setup"</td><td>Runs the version and account checks, reports what's missing. Doesn't install anything yet</td></tr>
+        <tr><td class="you">"Set it up for me"</td><td>Runs the same checks, then installs whatever's missing and runs <code>hsdm init</code>, narrating each step</td></tr>
         <tr><td class="you">"Get the latest files for [client]"</td><td>Confirms the portal, runs Fetch</td></tr>
         <tr><td class="you">"I want to start editing [module/template]"</td><td>Confirms or adds the Path, fetches it first</td></tr>
         <tr><td class="you">"Keep syncing while I work"</td><td>Confirms the portal by name and ID, then starts Watch</td></tr>
@@ -470,7 +470,7 @@
       </div>
       <div class="faq-item">
         <div class="q">Do I need to know Git or npm to use this?</div>
-        <div class="a">No. Claude runs those commands for you and explains what happened. You only need to know the outcome you want: "get the latest files," "send this live," "what portal am I on."</div>
+        <div class="a">No. If you're comfortable editing HTML and CSS but haven't touched Git, npm, or a terminal, Claude handles those parts and explains what's happening as it goes. If you already know them, you can still just say what you want instead of typing it by hand. Either way, you only need to know the outcome: "get the latest files," "send this live," "what portal am I on."</div>
       </div>
     </div>
   </section>

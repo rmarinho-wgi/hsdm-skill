@@ -61,7 +61,11 @@ git --version
 
 Only after all of these are green should you move on to installing or running `hsdm`.
 
+If the user just asked you to check ("is my setup ready?"), stop here and report what's green and what's missing — don't install anything yet. But if anything is missing, always offer next: "want me to set that up for you?" If the user's original ask was already "set it up for me" (or similar — "just get me set up," "do the setup," "install what I need"), skip the offer and go straight into **First-time setup** below for whatever's missing, narrating each step as you go so it's never a silent black box.
+
 ## First-time setup
+
+This runs either because the user asked for it directly ("set it up for me") or because a prerequisite check came back short and they said yes to your offer to fix it. Either way, walk it one step at a time and say what each command actually does before or as you run it — someone who knows HTML/CSS but has never used npm or Git shouldn't have to guess what just happened.
 
 Install the tool if `hsdm --version` fails:
 
@@ -111,6 +115,8 @@ Translate each screen as it comes, and always restate the user's choice back bef
 
 Map casual requests to the underlying flow, and always name the portal back to them:
 
+- "Is my HubSpot setup ready?" / "check my HubSpot setup" → **Prerequisite check** only. Report status, then offer to fix anything missing.
+- "Set it up for me" / "just get me set up" / "install what I need" → **Prerequisite check**, then **First-time setup** for anything missing, without waiting for a separate yes on each install step (the "set it up for me" itself is the go-ahead) — the live-portal confirmation gate above still applies once you get to `hs account auth` or anything portal-specific.
 - "What portal am I on?" → check `.hsaccount` / current hsdm selection, state it plainly, no action needed.
 - "Get me the latest files" / "pull the newest version" → **Fetch**.
 - "I want to start editing [thing]" → **Paths** (add if needed) then **Fetch**, before any editing begins.
