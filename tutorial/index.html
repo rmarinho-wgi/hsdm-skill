@@ -1,0 +1,493 @@
+<title>HSDM Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wg-suede:    #112721;
+    --wg-suede-2:  #16332b;
+    --wg-antique:  #A86A40;
+    --wg-orange:   #FF6700;
+    --wg-dk-gray:  #272727;
+    --wg-md-gray:  #4A4A4A;
+    --wg-lt-gray:  #F7F4F3;
+    --wg-lt-suede: #A0A9A6;
+    --wg-white:    #ffffff;
+    --wg-border:   #E4DFDC;
+    --font-display: 'League Gothic', Arial Black, Impact, sans-serif;
+    --font-body: 'Instrument Sans', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--wg-lt-gray);
+    color: var(--wg-dk-gray);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a { color: var(--wg-orange); }
+
+  .wrap { max-width: 880px; margin: 0 auto; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: var(--wg-suede);
+    color: var(--wg-white);
+    margin: 0 calc(-1 * max(20px, env(safe-area-inset-left, 0px))) 0 calc(-1 * max(20px, env(safe-area-inset-right, 0px)));
+    padding: 28px max(20px, env(safe-area-inset-left, 0px)) 40px;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .logo { height: 22px; display: block; margin-bottom: 28px; filter: invert(1) brightness(2); opacity: 0.95; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wg-antique);
+    background: rgba(168, 106, 64, 0.16);
+    border: 1px solid rgba(168, 106, 64, 0.45);
+    padding: 5px 11px;
+    margin-bottom: 16px;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); line-height: 0.98; }
+  .hero .sub {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+    color: #DCE6E2;
+    max-width: 54ch;
+    margin-top: 16px;
+    font-weight: 400;
+  }
+  .hero .meta {
+    margin-top: 22px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--wg-lt-suede);
+  }
+  .hero .meta b { color: var(--wg-white); font-weight: 600; }
+
+  /* ---------- Sections ---------- */
+  main { max-width: 880px; margin: 0 auto; padding: 44px 0 70px; }
+  section { margin-bottom: 52px; }
+  section:last-child { margin-bottom: 0; }
+
+  .kicker {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wg-antique);
+    margin-bottom: 8px;
+  }
+  h2.section-title { font-size: clamp(1.5rem, 4vw, 1.9rem); color: var(--wg-suede); margin-bottom: 14px; }
+  p { margin: 0 0 12px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+  .lede { font-size: 1.08rem; color: var(--wg-md-gray); max-width: 62ch; }
+
+  /* ---------- Prereq checklist ---------- */
+  .checklist {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 620px) { .checklist { grid-template-columns: 1fr; } }
+  .checklist li {
+    background: var(--wg-white);
+    border: 1px solid var(--wg-border);
+    padding: 14px 16px;
+    font-size: 0.94rem;
+  }
+  .checklist li .name { font-weight: 700; color: var(--wg-suede); display: block; margin-bottom: 3px; }
+  .checklist li .why { color: var(--wg-md-gray); font-size: 0.87rem; }
+
+  .sandbox-note {
+    margin-top: 16px;
+    border-left: 3px solid var(--wg-antique);
+    background: var(--wg-white);
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    color: var(--wg-md-gray);
+  }
+  .sandbox-note b { color: var(--wg-dk-gray); }
+
+  /* ---------- Golden rule callout ---------- */
+  .rule {
+    background: var(--wg-suede);
+    color: var(--wg-white);
+    padding: 30px clamp(20px, 4vw, 40px);
+    border-top: 5px solid var(--wg-orange);
+  }
+  .rule .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background: var(--wg-orange);
+    color: var(--wg-white);
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+  }
+  .rule h2 { color: var(--wg-white); font-size: clamp(1.5rem, 4vw, 1.9rem); margin-bottom: 12px; }
+  .rule p { color: #E3ECE9; max-width: 66ch; }
+  .rule .also { margin-top: 16px; font-size: 0.92rem; color: var(--wg-lt-suede); }
+  .rule .also b { color: var(--wg-antique); }
+
+  /* ---------- Steps ---------- */
+  .step {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: start;
+    padding: 26px 0;
+    border-top: 1px solid var(--wg-border);
+  }
+  .step:first-of-type { border-top: none; }
+  .step.no-shot { grid-template-columns: 1fr; }
+  @media (max-width: 700px) { .step { grid-template-columns: 1fr; } }
+
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: var(--wg-orange);
+    color: var(--wg-white);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    flex: none;
+    margin-bottom: 10px;
+  }
+  .step h3 { font-size: 1.25rem; color: var(--wg-suede); margin-bottom: 8px; text-transform: none; letter-spacing: normal; }
+  .step p { color: var(--wg-dk-gray); font-size: 0.97rem; }
+  .step .say {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--wg-md-gray);
+    font-style: italic;
+  }
+  .step .say b { color: var(--wg-antique); font-style: normal; }
+
+  .confirm-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--wg-orange);
+    border: 1px solid var(--wg-orange);
+    padding: 4px 10px;
+  }
+
+  .shot {
+    background: #0c1a16;
+    padding: 10px;
+    border: 1px solid var(--wg-suede);
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot figcaption {
+    margin: 0;
+    padding: 8px 2px 0;
+    font-size: 0.78rem;
+    color: var(--wg-md-gray);
+  }
+
+  .mock {
+    background: #0c1a16;
+    color: #DCE6E2;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.84rem;
+    padding: 16px;
+    border: 1px solid var(--wg-suede);
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .mock .dim { color: #7f978e; }
+  .mock .pick { color: var(--wg-orange); }
+  .mock .sel::before { content: "\25CF  "; color: var(--wg-orange); }
+  .mock .opt::before { content: "\25CB  "; color: #7f978e; }
+
+  /* ---------- Talk to it table ---------- */
+  .phrase-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 0.93rem; }
+  .phrase-table th {
+    background: var(--wg-antique);
+    color: var(--wg-white);
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 14px;
+  }
+  .phrase-table td { padding: 12px 14px; border-bottom: 1px solid var(--wg-border); vertical-align: top; }
+  .phrase-table tr:nth-child(even) td { background: var(--wg-white); }
+  .phrase-table tr:nth-child(odd) td { background: var(--wg-lt-gray); }
+  .phrase-table .you { color: var(--wg-suede); font-weight: 600; }
+  .phrase-table-wrap { overflow-x: auto; }
+
+  /* ---------- FAQ ---------- */
+  .faq { border-top: 1px solid var(--wg-border); }
+  .faq-item { border-bottom: 1px solid var(--wg-border); padding: 16px 0; }
+  .faq-item .q { font-weight: 700; color: var(--wg-suede); margin-bottom: 6px; font-size: 0.98rem; }
+  .faq-item .a { color: var(--wg-md-gray); font-size: 0.93rem; }
+
+  /* ---------- Files table ---------- */
+  .file-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
+  .file-table th {
+    background: var(--wg-antique); color: var(--wg-white);
+    text-align: left; padding: 9px 12px; font-size: 0.74rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .file-table td { padding: 10px 12px; border-bottom: 1px solid var(--wg-border); }
+  .file-table tr:nth-child(even) td { background: var(--wg-white); }
+  .file-table tr:nth-child(odd) td { background: var(--wg-lt-gray); }
+  .file-table code { font-size: 0.85em; color: var(--wg-suede); }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    background: var(--wg-white);
+    border: 1px solid var(--wg-border);
+    border-top: 4px solid var(--wg-orange);
+    padding: 26px clamp(20px,4vw,32px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .cta h2 { font-size: 1.4rem; color: var(--wg-suede); margin-bottom: 6px; }
+  .cta p { color: var(--wg-md-gray); font-size: 0.93rem; max-width: 46ch; }
+  .btn {
+    background: var(--wg-orange);
+    color: var(--wg-white) !important;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    padding: 13px 26px;
+    white-space: nowrap;
+    flex: none;
+  }
+
+  footer {
+    background: var(--wg-suede);
+    color: var(--wg-lt-suede);
+    margin: 0 calc(-1 * max(20px, env(safe-area-inset-left, 0px))) 0 calc(-1 * max(20px, env(safe-area-inset-right, 0px)));
+    padding: 26px max(20px, env(safe-area-inset-left, 0px)) max(26px, env(safe-area-inset-bottom, 0px));
+  }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 0.82rem; }
+  footer a { color: var(--wg-antique); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+
+<div class="hero">
+  <div class="hero-inner">
+    <img class="logo" src="images/weidert-logo.png" alt="Weidert">
+    <span class="eyebrow">Internal tool &middot; HubSpot CMS</span>
+    <h1>HSDM<br>Assistant</h1>
+    <p class="sub">A plain-English front end for <code>hs-dev-manager</code> &mdash; so you can pull a client's HubSpot files, edit them locally, and send changes back, without learning terminal commands or a menu system first.</p>
+    <div class="meta">
+      <span><b>Built for</b> anyone new to local HubSpot dev</span>
+      <span><b>Runs on</b> Claude Code</span>
+      <span><b>Wraps</b> hs-dev-manager (hsdm)</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section>
+    <div class="kicker">The problem</div>
+    <h2 class="section-title">Editing HubSpot's Design Manager directly is risky. Skipping it entirely is slow.</h2>
+    <p class="lede">Changing templates and modules right inside HubSpot means no history, no review, and no undo if something breaks on a live client site. The safer path &mdash; pulling files down, editing locally with real version control &mdash; usually means learning Node, Git, and a new CLI tool first. That's the barrier this skill removes: you talk to Claude in plain language, and it runs <code>hsdm</code> for you, correctly, with a hard stop before anything reaches a live portal.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Before you start</div>
+    <h2 class="section-title">Five things need to be true first</h2>
+    <p class="lede">Tell Claude "check my HubSpot setup" and it verifies all of this for you &mdash; you don't need to run these yourself. They're listed here so you know what "ready" looks like.</p>
+    <ul class="checklist">
+      <li><span class="name">Node.js 22+</span><span class="why">24 LTS recommended if installing fresh</span></li>
+      <li><span class="name">HubSpot CLI 8.x</span><span class="why">gives you the official <code>hs</code> commands + login</span></li>
+      <li><span class="name">Git</span><span class="why">tracks every fetch and deploy as a local commit</span></li>
+      <li><span class="name">Portal access</span><span class="why">permission to the account and its Design Manager</span></li>
+    </ul>
+    <div class="sandbox-note"><b>Sandbox or staging first.</b> If you're not sure which portal you should be pointed at, ask Client Service or the Web Development Manager before Claude connects anything &mdash; don't guess.</div>
+  </section>
+
+  <section class="rule">
+    <span class="badge">!</span>
+    <h2>Nothing reaches a live portal without you saying yes &mdash; by name</h2>
+    <p>Before <b>Deploy</b>, before <b>Watch</b>, and before any <b>Overwrite</b> during a conflict, Claude stops and asks a direct question naming the exact client and account ID and what's about to change. It waits for an explicit yes. Not a vibe, not "sure go ahead" said five minutes ago &mdash; an answer to that specific question, every time.</p>
+    <div class="also">Same rule applies to <b>adding a new portal connection</b> and <b>removing a saved path</b> &mdash; both change shared configuration other people rely on.</div>
+  </section>
+
+  <section>
+    <div class="kicker">Walkthrough</div>
+    <h2 class="section-title">What actually happens, step by step</h2>
+    <p class="lede">These are the real hsdm screens. Claude reads them and tells you your options in plain language &mdash; you're seeing them here so nothing feels unfamiliar the first time.</p>
+
+    <div class="step no-shot">
+      <span class="step-num">1</span>
+      <h3>Say what you want</h3>
+      <p>No command syntax required. Tell Claude the outcome, and it maps it to the right hsdm flow.</p>
+      <div class="mock"><span class="pick">you</span>&nbsp; get me the latest files for Cleveland Brothers<br><span class="dim">claude</span> checking hsdm &middot; portal <b>cleveland-brothers (43414393)</b> &middot; running Fetch&hellip;</div>
+      <p class="say">Also works for: <b>"I need to edit a module for [client]"</b>, <b>"what portal am I on"</b>, <b>"send my changes live"</b>, <b>"stop watching."</b></p>
+    </div>
+
+    <div class="step no-shot">
+      <span class="step-num">2</span>
+      <h3>Pick the right portal &mdash; by name <em>and</em> ID</h3>
+      <p>HubSpot accounts can have near-identical names across clients. Claude always confirms both the account name and the account ID before doing anything &mdash; it won't rely on name alone.</p>
+      <div class="mock">
+        <div class="dim">Select a portal</div>
+        <div class="opt">acme-industries&nbsp; <span class="dim">(11933201)</span></div>
+        <div class="sel">your-client-name&nbsp; <span class="dim">(50553855 &middot; last used)</span></div>
+        <div class="opt">+ Add portal <span class="dim">(authenticate a new HubSpot account)</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <h3>One menu, six things you can do</h3>
+      <p>Once a portal's selected, this is the whole toolset: configure Paths, Fetch, Watch, Lint, Deploy, or check Deploy history. Claude picks the right one from what you asked for &mdash; you never have to read this menu yourself.</p>
+      <div class="say">This is a real screen from an active session, shown so the menu looks familiar if you ever see it directly.</div>
+      <figure class="shot">
+        <img src="images/menu.png" alt="hsdm main menu for a selected portal, listing Paths, Fetch / update local, Watch, Lint local files, Deploy, Deploy history, Open HubSpot, Help, Back, Exit">
+        <figcaption>The main menu after a portal is selected.</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <h3>Choose what you're working on</h3>
+      <p>"Paths" are the specific Design Manager folders tracked locally. Claude can add a new one (browsing HubSpot's folders for you) or work with one already saved &mdash; either way, it tells you what it's about to fetch before pulling anything down.</p>
+      <div class="say">Removing a saved path only un-tracks it locally &mdash; it never deletes anything from HubSpot.</div>
+      <figure class="shot">
+        <img src="images/paths.png" alt="Saved paths menu for a portal, showing two saved paths and options to configure a new one or remove a saved path">
+        <figcaption>Saved paths for one client &mdash; add, remove, or pick one to work in.</figcaption>
+      </figure>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <h3>Fetch: pull the latest before you touch anything</h3>
+      <p>Read-only against HubSpot, so it's safe to run often. If HubSpot's copy has changed, Claude tells you and asks whether to grab only what changed or do a full re-download. If you have uncommitted local edits, the fetch is blocked automatically &mdash; that's hsdm protecting your work, not a bug.</p>
+      <figure class="shot">
+        <img src="images/fetch.png" alt="Fetch / update local screen showing HubSpot matches your local copy, and a list of paths with their sync status">
+        <figcaption>Fetch checks HubSpot before touching your local files.</figcaption>
+      </figure>
+    </div>
+
+    <div class="step no-shot">
+      <span class="step-num">6</span>
+      <h3>Watch: continuous sync &mdash; the highest-risk mode</h3>
+      <p>Watch uploads every saved change to the live portal automatically, for as long as it runs. Claude will confirm the exact portal before starting, and will check in if a session runs long. When you're done, it'll suggest a Deploy so a clean local commit captures what went live.</p>
+      <div class="confirm-flag">Requires explicit confirmation</div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span>
+      <h3>Deploy: review, then send it live</h3>
+      <p>Claude tells you exactly which files are about to upload, HubSpot's own lint runs first, and it diffs against the last synced state. Any conflict is Skip, Overwrite, or Cancel &mdash; one at a time, and every Overwrite gets its own confirmation. A local commit is written the moment the upload succeeds.</p>
+      <figure class="shot">
+        <img src="images/deploy.png" alt="Deploy screen showing one file to deploy, linted with no errors, remote check complete with no conflicts, and a suggested commit message">
+        <figcaption>Clean deploy &mdash; linted, no conflicts, ready for your yes.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Cheat sheet</div>
+    <h2 class="section-title">Talk to it like this</h2>
+    <div class="phrase-table-wrap">
+      <table class="phrase-table">
+        <tr><th>You say</th><th>Claude does</th></tr>
+        <tr><td class="you">"Set up my HubSpot workspace"</td><td>Checks prerequisites, installs hsdm if needed, runs <code>hsdm init</code></td></tr>
+        <tr><td class="you">"Is my HubSpot connection working?"</td><td>Runs the version and account checks, reports what's missing in plain language</td></tr>
+        <tr><td class="you">"Get the latest files for [client]"</td><td>Confirms the portal, runs Fetch</td></tr>
+        <tr><td class="you">"I want to start editing [module/template]"</td><td>Confirms or adds the Path, fetches it first</td></tr>
+        <tr><td class="you">"Keep syncing while I work"</td><td>Confirms the portal by name and ID, then starts Watch</td></tr>
+        <tr><td class="you">"Send my changes to the client's site"</td><td>Confirms the portal and files, walks any conflicts one at a time, then Deploys</td></tr>
+        <tr><td class="you">"What portal am I on?"</td><td>Reports the current selection &mdash; no action taken</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Know the files</div>
+    <h2 class="section-title">What's safe to touch</h2>
+    <table class="file-table">
+      <tr><th>Path</th><th>What it is</th></tr>
+      <tr><td><code>src/{account}-{id}/</code></td><td>The actual CMS files &mdash; this is where editing happens</td></tr>
+      <tr><td><code>paths-config.json</code></td><td>Shared, tracked in Git &mdash; hsdm manages it, don't hand-edit</td></tr>
+      <tr><td><code>.hsaccount</code></td><td>Local-only &mdash; last selected portal. Never edit or delete</td></tr>
+      <tr><td><code>db/</code></td><td>Local-only fetch/deploy history and sync state. Never edit or delete</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="kicker">Questions</div>
+    <h2 class="section-title">If something feels off</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="q">Claude says a menu needs a "real interactive terminal" &mdash; what now?</div>
+        <div class="a">Some hsdm screens are full-screen interactive prompts that can't always be driven remotely. Claude will tell you plainly when this happens and coach you through it live instead &mdash; telling you exactly what to expect on screen and asking what you see, so the same confirmation rules still apply.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Fetch says it's blocked &mdash; is that broken?</div>
+        <div class="a">No &mdash; it means you have uncommitted local changes in that portal's files, and hsdm is refusing to overwrite them. Claude will help you review and commit (or intentionally discard, with confirmation) before trying again.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">I think the wrong thing got deployed &mdash; what do I do?</div>
+        <div class="a">Stop and say so right away. Every successful deploy is a scoped local Git commit, so what shipped is recorded and reviewable &mdash; but loop in the Web Development Manager or Client Service immediately rather than trying to quietly fix it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="q">Do I need to know Git or npm to use this?</div>
+        <div class="a">No. Claude runs those commands for you and explains what happened in plain language. You only need to know what outcome you want &mdash; "get the latest files," "send this live," "what portal am I on."</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div>
+      <h2>Ready when you are</h2>
+      <p>Open a Claude Code session in your HubSpot workspace and just ask for what you need &mdash; the skill loads automatically.</p>
+    </div>
+    <a class="btn" href="https://github.com/rmarinho-wgi/hsdm-skill" target="_blank" rel="noopener">View the skill</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>HSDM Assistant &middot; a Claude skill for hs-dev-manager</span>
+    <span><a href="https://github.com/rmarinho-wgi/hsdm-skill" target="_blank" rel="noopener">Repo</a> &middot; <a href="https://www.npmjs.com/package/hs-dev-manager" target="_blank" rel="noopener">hs-dev-manager on npm</a> &middot; <a href="https://developers.hubspot.com/docs/developer-tooling/local-development/hubspot-cli/install-the-cli" target="_blank" rel="noopener">HubSpot CLI setup</a></span>
+  </div>
+</footer>
